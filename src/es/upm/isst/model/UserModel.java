@@ -25,5 +25,42 @@ public class UserModel implements Serializable {
 		this.matricula = matricula;
 		this.moderador = moderador;
 	}
+	
+	public Long getId(){
+		return id;
+	}
+	
+	public String getName(){
+		return nombre;
+	}
+	public void setName(String newName){
+		nombre = newName;
+	}
+	
+	public String getEmail(){
+		return email;
+	}
+	public void setEmail(String newEmail){
+		email = newEmail;
+	}
+	
+	public String getMatricula(){
+		return matricula;
+	}
+	public void setMatricula(String newMatricula){
+		matricula = newMatricula;
+	}
+	
+	public boolean isModerator(){
+		if (moderador != 0){
+			return true;
+		}
+		return false;
+	}
+	
+	public void setModerador(){
+		moderador = 1;
+	}
 
+	
 }

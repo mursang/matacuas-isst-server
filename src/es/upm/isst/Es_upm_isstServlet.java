@@ -14,6 +14,10 @@ public class Es_upm_isstServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 		MatacuasDAO dao = MatacuasDAOImpl.getInstance();	
-		
+		List<UserModel> myList = dao.getAllUsers();
+		for (UserModel user: myList){
+			resp.getWriter().println(user.getName());
+			resp.getWriter().println(user.getId());
+		}
 	}
 }

@@ -33,7 +33,7 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	}
 
 	@Override
-	public void add(String name, String email, String matricula, int moderador) {
+	public void addUser(String name, String email, String matricula, int moderador) {
 		EntityManager em = EMFService.get().createEntityManager();
 		//creamos un usuario
 		UserModel myUser = new UserModel(name,email,matricula,moderador);
@@ -43,15 +43,15 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 
 	@Override
 	public UserModel getUser(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateUser(int id, String name, String email, String matricula,
+	public boolean updateUser(int id, String name, String email, String matricula,
 			int moderador) {
-		// TODO Auto-generated method stub
+		
 
+		return true;
 	}
 
 	@Override

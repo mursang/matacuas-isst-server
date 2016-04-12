@@ -6,9 +6,9 @@ import es.upm.isst.model.UserModel;
 public interface MatacuasDAO{
 	
 	public List<UserModel> getAllUsers();
-	public void add (String name, String email, String matricula, int moderador);
+	public void addUser(String name, String email, String matricula, int moderador);
 	public UserModel getUser(int id);
-	public void updateUser(int id, String name, String email, String matricula, int moderador);
+	public boolean updateUser(int id, String name, String email, String matricula, int moderador);
 	public void remove (int id);
 	
 }
