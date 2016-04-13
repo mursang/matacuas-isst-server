@@ -9,12 +9,17 @@ public interface MatacuasDAO{
 	
 	/*USER*/
 	public List<UserModel> getAllUsers();
-	public void addUser(String name, String email, String matricula, int moderador);
+	public Long addUser(String name, String email, String matricula, int moderador);
 	public UserModel getUser(int id);
 	public boolean updateUser(int id, String name, String email, String matricula, int moderador);
 	public void remove (int id);
 	
 	/*INFRACCIONES*/
-	public void addInfraccion(Long longitud, Long latitud,String matricula, String descripcion, Date fecha);
+	public Long addInfraccion(Long longitud, Long latitud,String matricula, String descripcion, Date fecha);
 	public List<InfraccionModel> getAllInfracciones();
+	public List<InfraccionModel> getMyInfracciones(String user_id);
+	
+	/*RELACION INFRACCION Y USUARIO*/
+	public void matchInfraccionUsuario(Long infraccionId, Long userId);
+	
 }

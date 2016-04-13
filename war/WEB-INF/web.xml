@@ -9,16 +9,32 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-class>es.upm.isst.Es_upm_isstServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>newInfraccion</servlet-name>
-		<servlet-class>es.upm.isst.newInfraccionServlet</servlet-class>
+		<servlet-name>NewInfraccion</servlet-name>
+		<servlet-class>es.upm.isst.NewInfraccionServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>NewUser</servlet-name>
+		<servlet-class>es.upm.isst.NewUserServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>GetMyComments</servlet-name>
+		<servlet-class>es.upm.isst.GetMyCommentsServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Es_upm_isst</servlet-name>
 		<url-pattern>/es_upm_isst</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>newInfraccion</servlet-name>
-		<url-pattern>/newInfraccion</url-pattern>
+		<servlet-name>NewInfraccion</servlet-name>
+		<url-pattern>/NewInfraccion</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NewUser</servlet-name>
+		<url-pattern>/NewUser</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetMyComments</servlet-name>
+		<url-pattern>/GetMyComments</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

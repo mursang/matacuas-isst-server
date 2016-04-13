@@ -1,12 +1,15 @@
 package es.upm.isst.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import es.upm.isst.model.InfraccionModel;
+import es.upm.isst.model.UserInfraccion;
 import es.upm.isst.model.UserModel;
 
 public class MatacuasDAOImpl implements MatacuasDAO {
@@ -34,12 +37,19 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	}
 
 	@Override
-	public void addUser(String name, String email, String matricula, int moderador) {
+	public Long addUser(String name, String email, String matricula, int moderador) {
 		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
 		//creamos un usuario
 		UserModel myUser = new UserModel(name,email,matricula,moderador);
+		transaction.begin();
 		em.persist(myUser); //guardamos.
+		transaction.commit();
+		long id = myUser.getId();
 		em.close(); //cerramos conexion.
+		
+		
+		return id;
 	}
 
 	@Override
@@ -60,15 +70,28 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		// TODO Auto-generated method stub
 
 	}
+	
 	@Override
-	public void addInfraccion(Long longitud, Long latitud, String matricula, String descripcion,
+	public Long addInfraccion(Long longitud, Long latitud, String matricula, String descripcion,
 			Date fecha) {
 		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
 		//por defecto las nuevas infracciones están con aprobadas = 0, porque necesitan moderacion.
 		InfraccionModel myInfraccion = new InfraccionModel(latitud,longitud,matricula,descripcion,0,fecha);
+		transaction.begin();
 		em.persist(myInfraccion);
+		transaction.commit();
+		long id = myInfraccion.getId();
 		em.close();	
+		
+		
+		
 		/*TODO: Avisar al usuario que ha cometido la infraccion si estuviera registrado con esa matricula*/
+		
+		
+		return id;
+		
+		
 	
 	
 	}
@@ -80,5 +103,37 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		em.close();
 		return results;
 	}
+	
+	@Override
+	public List<InfraccionModel> getMyInfracciones(String user_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select i from UserInfraccion where user_id = :user_id");
+		q.setParameter("userId",user_id);
+		
+		List<UserInfraccion> listUserInfraccion = q.getResultList();
+		em.close();
+		List<InfraccionModel> listInfracciones = new ArrayList<InfraccionModel>();
+		for (UserInfraccion inf: listUserInfraccion){
+			String idInfraccion = inf.getInfraccionId().toString();
+			Query q1 = em.createQuery("select i from InfraccionModel where id = :idInfraccion");
+			q1.setParameter("idInfraccion",idInfraccion);
+			List<InfraccionModel> result1 = q1.getResultList();
+			listInfracciones.add(result1.get(0));
+			em.close();
+		}
+
+		return listInfracciones;
+	}
+	
+	
+	
+	@Override
+	public void matchInfraccionUsuario(Long infraccionId, Long userId) {
+		EntityManager em = EMFService.get().createEntityManager();
+		UserInfraccion myUserInfraccion = new UserInfraccion(userId,infraccionId);
+		em.persist(myUserInfraccion);
+		em.close();
+	}
+	
 
 }

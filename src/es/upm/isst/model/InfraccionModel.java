@@ -75,6 +75,9 @@ public class InfraccionModel implements Serializable {
 		matricula = newMatricula;
 	}
 
+	public Long getId(){
+		return id;
+	}
 	
 	
 }
