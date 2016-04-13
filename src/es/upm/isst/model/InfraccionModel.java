@@ -16,14 +16,16 @@ public class InfraccionModel implements Serializable {
 	private Long id;
 	private Long latitud;
 	private Long longitud;
+	private String matricula;
 	private String descripcion;
 	private int aprobada;
 	private Date fecha;
 	
 	
-	public InfraccionModel(Long longitud, Long latitud, String descripcion, int aprobada, Date fecha) {
+	public InfraccionModel(Long longitud, Long latitud, String matricula, String descripcion, int aprobada, Date fecha) {
 		this.latitud = latitud;
 		this.longitud = longitud;
+		this.matricula = matricula;
 		this.descripcion = descripcion;
 		this.aprobada = aprobada;
 		this.fecha = fecha;
@@ -63,6 +65,14 @@ public class InfraccionModel implements Serializable {
 	
 	public Date getFecha(){
 		return fecha;
+	}
+	
+	public String getMatricula(){
+		return matricula;
+	}
+	
+	public void setMatricula(String newMatricula){
+		matricula = newMatricula;
 	}
 
 	

@@ -1,11 +1,12 @@
 package es.upm.isst.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
+import es.upm.isst.model.InfraccionModel;
 import es.upm.isst.model.UserModel;
 
 public class MatacuasDAOImpl implements MatacuasDAO {
@@ -58,6 +59,26 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	public void remove(int id) {
 		// TODO Auto-generated method stub
 
+	}
+	@Override
+	public void addInfraccion(Long longitud, Long latitud, String matricula, String descripcion,
+			Date fecha) {
+		EntityManager em = EMFService.get().createEntityManager();
+		//por defecto las nuevas infracciones están con aprobadas = 0, porque necesitan moderacion.
+		InfraccionModel myInfraccion = new InfraccionModel(latitud,longitud,matricula,descripcion,0,fecha);
+		em.persist(myInfraccion);
+		em.close();	
+		/*TODO: Avisar al usuario que ha cometido la infraccion si estuviera registrado con esa matricula*/
+	
+	
+	}
+	@Override
+	public List<InfraccionModel> getAllInfracciones() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select i from InfraccionModel i");
+		List<InfraccionModel> results = q.getResultList();
+		em.close();
+		return results;
 	}
 
 }
