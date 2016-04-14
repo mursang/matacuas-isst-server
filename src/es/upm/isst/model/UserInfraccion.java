@@ -2,6 +2,7 @@ package es.upm.isst.model;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.PrimaryKey;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,8 +12,7 @@ public class UserInfraccion implements Serializable {
 
 	private static final long serialVersionUID = 01L;
 	
-	@GeneratedValue @Id
-	private Long id;
+	@GeneratedValue @Id @PrimaryKey private Long id;
 	private Long user_id;
 	private Long infraccion_id;
 	

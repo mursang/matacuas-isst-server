@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.mortbay.log.Log;
+
 import es.upm.isst.model.InfraccionModel;
 import es.upm.isst.model.UserInfraccion;
 import es.upm.isst.model.UserModel;
@@ -107,21 +109,19 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	@Override
 	public List<InfraccionModel> getMyInfracciones(String user_id) {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select i from UserInfraccion where user_id = :user_id");
-		q.setParameter("userId",user_id);
-		
+		Query q = em.createQuery("select i from UserInfraccion i where user_id = "+user_id,UserInfraccion.class);
 		List<UserInfraccion> listUserInfraccion = q.getResultList();
-		em.close();
+	
+
 		List<InfraccionModel> listInfracciones = new ArrayList<InfraccionModel>();
 		for (UserInfraccion inf: listUserInfraccion){
 			String idInfraccion = inf.getInfraccionId().toString();
-			Query q1 = em.createQuery("select i from InfraccionModel where id = :idInfraccion");
-			q1.setParameter("idInfraccion",idInfraccion);
+			Query q1 = em.createQuery("select i from InfraccionModel i where id = "+idInfraccion,InfraccionModel.class);
 			List<InfraccionModel> result1 = q1.getResultList();
 			listInfracciones.add(result1.get(0));
-			em.close();
+			
 		}
-
+		em.close();
 		return listInfracciones;
 	}
 	

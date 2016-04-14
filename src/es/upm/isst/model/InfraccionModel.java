@@ -2,6 +2,7 @@ package es.upm.isst.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.jdo.annotations.PrimaryKey;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,8 +13,7 @@ public class InfraccionModel implements Serializable {
 
 	private static final long serialVersionUID = 01L;
 
-	@GeneratedValue @Id
-	private Long id;
+	@GeneratedValue @Id @PrimaryKey private Long id;
 	private Long latitud;
 	private Long longitud;
 	private String matricula;
@@ -50,6 +50,10 @@ public class InfraccionModel implements Serializable {
 	}
 	public void setDescripcion(String newDescripcion){
 		descripcion = newDescripcion;
+	}
+	
+	public int getAprobada(){
+		return aprobada;
 	}
 	
 	public boolean isAprobada(){
