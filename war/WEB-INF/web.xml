@@ -20,6 +20,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>GetMyComments</servlet-name>
 		<servlet-class>es.upm.isst.GetMyCommentsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>GetAllComments</servlet-name>
+		<servlet-class>es.upm.isst.GetAllCommentsServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Es_upm_isst</servlet-name>
 		<url-pattern>/es_upm_isst</url-pattern>
@@ -35,6 +39,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>GetMyComments</servlet-name>
 		<url-pattern>/GetMyComments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetAllComments</servlet-name>
+		<url-pattern>/GetAllComments</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

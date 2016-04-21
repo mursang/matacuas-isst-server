@@ -74,7 +74,7 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	}
 	
 	@Override
-	public Long addInfraccion(Long longitud, Long latitud, String matricula, String descripcion,
+	public Long addInfraccion(Double longitud, Double latitud, String matricula, String descripcion,
 			Date fecha) {
 		EntityManager em = EMFService.get().createEntityManager();
 		EntityTransaction transaction = em.getTransaction();

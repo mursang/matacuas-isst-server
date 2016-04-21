@@ -14,15 +14,15 @@ public class InfraccionModel implements Serializable {
 	private static final long serialVersionUID = 01L;
 
 	@GeneratedValue @Id @PrimaryKey private Long id;
-	private Long latitud;
-	private Long longitud;
+	private Double latitud;
+	private Double longitud;
 	private String matricula;
 	private String descripcion;
 	private int aprobada;
 	private Date fecha;
 	
 	
-	public InfraccionModel(Long longitud, Long latitud, String matricula, String descripcion, int aprobada, Date fecha) {
+	public InfraccionModel(Double longitud, Double latitud, String matricula, String descripcion, int aprobada, Date fecha) {
 		this.latitud = latitud;
 		this.longitud = longitud;
 		this.matricula = matricula;
@@ -31,17 +31,17 @@ public class InfraccionModel implements Serializable {
 		this.fecha = fecha;
 	}
 	
-	public Long getLatitud(){
+	public Double getLatitud(){
 		return latitud;
 	}
-	public void setLatitud(Long newLatitud){
+	public void setLatitud(Double newLatitud){
 		latitud = newLatitud;
 	}
 	
-	public Long getLongitud(){
+	public Double getLongitud(){
 		return longitud;
 	}
-	public void setLongitud(Long newLongitud){
+	public void setLongitud(Double newLongitud){
 		longitud = newLongitud;
 	}
 	

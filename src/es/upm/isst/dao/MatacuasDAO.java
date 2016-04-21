@@ -15,7 +15,7 @@ public interface MatacuasDAO{
 	public void remove (int id);
 	
 	/*INFRACCIONES*/
-	public Long addInfraccion(Long longitud, Long latitud,String matricula, String descripcion, Date fecha);
+	public Long addInfraccion(Double longitud, Double latitud,String matricula, String descripcion, Date fecha);
 	public List<InfraccionModel> getAllInfracciones();
 	public List<InfraccionModel> getMyInfracciones(String user_id);
 	

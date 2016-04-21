@@ -19,9 +19,14 @@ public class NewInfraccionServlet extends HttpServlet {
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
+		
 		//recogemos los datos de la Infraccion
-		Long latitud = (long)Double.parseDouble(req.getParameter("latitud"));
-		Long longitud = (long)Double.parseDouble(req.getParameter("longitud"));
+		Double latitud = Double.parseDouble(req.getParameter("latitud").toString());
+		Double longitud = Double.parseDouble(req.getParameter("longitud").toString());
+		
+		resp.getWriter().println("latitud: "+latitud+" y longitud: "+longitud);
+
+		
 		String matriculaInfractor = req.getParameter("matricula");
 		String descripcion = req.getParameter("descripcion");
 		Date fecha = new Date();
@@ -47,7 +52,6 @@ public class NewInfraccionServlet extends HttpServlet {
 		dao.matchInfraccionUsuario(generatedId, Long.parseLong(userId));
 		
 		resp.getWriter().println("GUARDADA INFRACCION CON ID: "+generatedId+" Y HECHO MATCH CON USER ID: "+userId);
-		
 		
 		
 	}

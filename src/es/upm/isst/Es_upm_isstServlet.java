@@ -25,7 +25,7 @@ public class Es_upm_isstServlet extends HttpServlet {
 		}
 		
 		Date myDate = new Date();		
-		dao.addInfraccion((long)-34.543,(long)30.012,"2823832-HKQ","Descripcion guay",myDate);
+		//dao.addInfraccion((long)-34.543,(long)30.012,"2823832-HKQ","Descripcion guay",myDate);
 		resp.getWriter().println("AÑADIDA INFRACCION.<br>");
 		
 		List<InfraccionModel> infraccionesList = dao.getAllInfracciones();
