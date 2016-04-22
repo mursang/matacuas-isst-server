@@ -13,6 +13,7 @@ public interface MatacuasDAO{
 	public UserModel getUser(int id);
 	public boolean updateUser(int id, String name, String email, String matricula, int moderador);
 	public void remove (int id);
+	public String getUserIdFromEmail(String email);
 	
 	/*INFRACCIONES*/
 	public Long addInfraccion(Double longitud, Double latitud,String matricula, String descripcion, Date fecha);

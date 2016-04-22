@@ -134,6 +134,20 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		em.persist(myUserInfraccion);
 		em.close();
 	}
+	@Override
+	public String getUserIdFromEmail(String email) {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select u from UserModel u where email = :email");
+		q.setParameter("email", email);
+		List<UserModel> results = q.getResultList();
+		em.close();
+		if (results.isEmpty()){
+			return "not found";
+		}else{
+			UserModel myUser = results.get(0);
+			return myUser.getId().toString();
+		}
+	}
 	
 
 }
