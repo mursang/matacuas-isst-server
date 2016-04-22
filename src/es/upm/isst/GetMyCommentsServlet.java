@@ -41,7 +41,9 @@ public class GetMyCommentsServlet extends HttpServlet {
 			json.put("matricula", inf.getMatricula());
 			json.put("descripcion",inf.getDescripcion());
 			json.put("aprobada", ""+inf.getAprobada());
-			json.put("fecha", inf.getFecha().toString());
+			
+			String dateStr=String.format("%td/%tm/%tY", inf.getFecha(),inf.getFecha(),inf.getFecha());
+			json.put("fecha", dateStr);
 			
 			jsonGeneral.put(""+contador, json);
 			
