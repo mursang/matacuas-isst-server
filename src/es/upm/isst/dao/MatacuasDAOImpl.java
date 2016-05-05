@@ -148,6 +148,17 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 			return myUser.getId().toString();
 		}
 	}
+	@Override
+	public List<InfraccionModel> getReceivedComments(String user_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		//hay que coger la matricula del usuario con ese id y buscar las infracciones cuya matricula encaje.
+			UserModel myUser = em.find(UserModel.class, Long.valueOf(user_id));
+			String matricula = myUser.getMatricula();
+			Query q2 = em.createQuery("select i from InfraccionModel i where i.matricula = :matricula");
+			q2.setParameter("matricula",matricula);
+			List<InfraccionModel> infracciones = q2.getResultList();
+			return infracciones;
+	}
 	
 
 }
