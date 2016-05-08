@@ -32,6 +32,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 		<servlet-name>GetReceivedComments</servlet-name>
 		<servlet-class>es.upm.isst.GetReceivedCommentsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>DenunciaComentarioServlet</servlet-name>
+		<servlet-class>es.upm.isst.DenunciaComentarioServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Es_upm_isst</servlet-name>
 		<url-pattern>/es_upm_isst</url-pattern>
@@ -59,6 +63,10 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet-mapping>
 		<servlet-name>GetReceivedComments</servlet-name>
 		<url-pattern>/GetReceivedComments</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DenunciaComentarioServlet</servlet-name>
+		<url-pattern>/DenunciaComentario</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>

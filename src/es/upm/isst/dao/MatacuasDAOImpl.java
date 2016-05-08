@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import org.mortbay.log.Log;
 
+import es.upm.isst.model.DenunciaModel;
 import es.upm.isst.model.InfraccionModel;
 import es.upm.isst.model.UserInfraccion;
 import es.upm.isst.model.UserModel;
@@ -158,6 +159,19 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 			q2.setParameter("matricula",matricula);
 			List<InfraccionModel> infracciones = q2.getResultList();
 			return infracciones;
+	}
+	@Override
+	public Long newDenuncia(String comentario_id, String userId) {
+		EntityManager em = EMFService.get().createEntityManager();
+		EntityTransaction transaction = em.getTransaction();
+		DenunciaModel denuncia = new DenunciaModel(Long.valueOf(userId), Long.valueOf(comentario_id));
+		transaction.begin();
+		em.persist(denuncia);
+		transaction.commit();
+		long id = denuncia.getId();
+		em.close();
+		
+		return id;
 	}
 	
 

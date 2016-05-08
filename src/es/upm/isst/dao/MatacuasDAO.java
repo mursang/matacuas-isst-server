@@ -24,4 +24,8 @@ public interface MatacuasDAO{
 	/*RELACION INFRACCION Y USUARIO*/
 	public void matchInfraccionUsuario(Long infraccionId, Long userId);
 	
+	/*DENUNCIA DE UN COMENTARIO*/
+	public Long newDenuncia(String comentario_id, String userId);
+	
+	
 }

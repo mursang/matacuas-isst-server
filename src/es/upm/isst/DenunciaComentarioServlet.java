@@ -1,6 +1,7 @@
 package es.upm.isst;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,24 +14,23 @@ import es.upm.isst.dao.MatacuasDAO;
 import es.upm.isst.dao.MatacuasDAOImpl;
 
 @SuppressWarnings("serial")
-public class NewUserServlet extends HttpServlet {
+public class DenunciaComentarioServlet extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
 
-		String nombre = req.getParameter("nombre");
-		String email = req.getParameter("email");
-		String matricula = req.getParameter("matricula");
+		String user_id = req.getParameter("userId");
+		String comentario_id = req.getParameter("comentarioId");
 		
 		MatacuasDAO dao = MatacuasDAOImpl.getInstance();
-		Long generatedId = dao.addUser(nombre, email, matricula, 0);
+		Long generatedId = dao.newDenuncia(comentario_id, user_id);
 		
 		 
 		JSONObject json = new JSONObject();
 		// respondemos en formato JSON el userId
 		try {
-			json.put("userId", generatedId);
+			json.put("denunciaId", generatedId);
 			json.put("status", 1);
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -38,7 +38,7 @@ public class NewUserServlet extends HttpServlet {
 		}		
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("utf-8");
-		// finally output the json string
-		resp.getWriter().println(json.toString());
+		// finally output the json string  
+		resp.getWriter().println(json.toString());		
 	}
 }
