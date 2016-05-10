@@ -27,5 +27,9 @@ public interface MatacuasDAO{
 	/*DENUNCIA DE UN COMENTARIO*/
 	public Long newDenuncia(String comentario_id, String userId);
 	
+	/*MODERADOR*/
+	public List<InfraccionModel> getInfraccionModerar();
+	public void aprobarComentario(String comentario_id);
+	public void rechazarComentario(String comentario_id);
 	
 }

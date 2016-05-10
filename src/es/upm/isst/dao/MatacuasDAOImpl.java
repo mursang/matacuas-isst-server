@@ -175,6 +175,30 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		UserModel myUser = em.find(UserModel.class, Long.valueOf(id));
 		return myUser;
 	}
+	@Override
+	public List<InfraccionModel> getInfraccionModerar() {
+		EntityManager em = EMFService.get().createEntityManager();
+		Query q = em.createQuery("select i from InfraccionModel i where i.aprobada = :aprobada");
+		q.setParameter("aprobada",0);
+		List<InfraccionModel> lista = q.getResultList();
+		return lista;
+	}
+	@Override
+	public void aprobarComentario(String comentario_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		InfraccionModel myInfraccion = em.find(InfraccionModel.class, Long.valueOf(comentario_id));
+		myInfraccion.setAprobada(1);
+		em.merge(myInfraccion);
+		em.close();
+	}
+	@Override
+	public void rechazarComentario(String comentario_id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		InfraccionModel myInfraccion = em.find(InfraccionModel.class, Long.valueOf(comentario_id));
+		myInfraccion.setAprobada(2);
+		em.merge(myInfraccion);
+		em.close();
+	}
 	
 
 }
