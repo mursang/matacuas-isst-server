@@ -11,6 +11,7 @@ import com.google.appengine.labs.repackaged.org.json.JSONObject;
 
 import es.upm.isst.dao.MatacuasDAO;
 import es.upm.isst.dao.MatacuasDAOImpl;
+import es.upm.isst.model.UserModel;
 
 @SuppressWarnings("serial")
 public class LoginUserServlet extends HttpServlet {
@@ -25,19 +26,18 @@ public class LoginUserServlet extends HttpServlet {
 			JSONObject json = new JSONObject();
 			try{
 				if (myUserId == "not found"){ //not found
-					json.put("status","false");
+					json.put("status",false);
 				}else{ // ok
-					json.put("status","true");
+					json.put("status",true);
 					json.put("userId", myUserId);
+					UserModel myUser = dao.getUser(myUserId);
+					json.put("moderador", myUser.isModerator());
 				}
 			}catch(JSONException e){
 				e.printStackTrace();
 			}
 			
 			resp.getWriter().println(json.toString());
-		}
-		
-		
-		
+		}	
 	}
 }

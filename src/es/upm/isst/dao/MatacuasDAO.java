@@ -9,8 +9,8 @@ public interface MatacuasDAO{
 	
 	/*USER*/
 	public List<UserModel> getAllUsers();
+	public UserModel getUser(String id);
 	public Long addUser(String name, String email, String matricula, int moderador);
-	public UserModel getUser(int id);
 	public boolean updateUser(int id, String name, String email, String matricula, int moderador);
 	public void remove (int id);
 	public String getUserIdFromEmail(String email);

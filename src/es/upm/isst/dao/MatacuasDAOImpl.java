@@ -55,10 +55,6 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		return id;
 	}
 
-	@Override
-	public UserModel getUser(int id) {
-		return null;
-	}
 
 	@Override
 	public boolean updateUser(int id, String name, String email, String matricula,
@@ -172,6 +168,12 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		em.close();
 		
 		return id;
+	}
+	@Override
+	public UserModel getUser(String id) {
+		EntityManager em = EMFService.get().createEntityManager();
+		UserModel myUser = em.find(UserModel.class, Long.valueOf(id));
+		return myUser;
 	}
 	
 
