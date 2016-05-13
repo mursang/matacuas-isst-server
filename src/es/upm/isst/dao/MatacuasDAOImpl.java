@@ -97,7 +97,7 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 	@Override
 	public List<InfraccionModel> getAllInfracciones() {
 		EntityManager em = EMFService.get().createEntityManager();
-		Query q = em.createQuery("select i from InfraccionModel i");
+		Query q = em.createQuery("select i from InfraccionModel i where i.aprobada = 1");
 		List<InfraccionModel> results = q.getResultList();
 		em.close();
 		return results;
