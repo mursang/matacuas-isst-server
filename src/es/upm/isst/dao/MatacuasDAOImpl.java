@@ -151,7 +151,7 @@ public class MatacuasDAOImpl implements MatacuasDAO {
 		//hay que coger la matricula del usuario con ese id y buscar las infracciones cuya matricula encaje.
 			UserModel myUser = em.find(UserModel.class, Long.valueOf(user_id));
 			String matricula = myUser.getMatricula();
-			Query q2 = em.createQuery("select i from InfraccionModel i where i.matricula = :matricula");
+			Query q2 = em.createQuery("select i from InfraccionModel i where i.matricula = :matricula and i.aprobada = 1");
 			q2.setParameter("matricula",matricula);
 			List<InfraccionModel> infracciones = q2.getResultList();
 			return infracciones;
